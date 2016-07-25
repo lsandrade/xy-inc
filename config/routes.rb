@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :pois
+  #resources :pois
+
+  #match 'pois/proximity', to: 'pois#proximity', as: :pois_proximity, via: :get
+  resources :pois do
+    collection do
+      get 'proximity'
+    end
+  end
+  resources :pois, defaults: { format: 'json' }
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

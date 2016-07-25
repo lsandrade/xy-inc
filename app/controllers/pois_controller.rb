@@ -1,5 +1,7 @@
 class PoisController < ApplicationController
   before_action :set_poi, only: [:show, :edit, :update, :destroy]
+  respond_to :json
+
 
   # GET /pois
   # GET /pois.json
@@ -59,6 +61,12 @@ class PoisController < ApplicationController
       format.html { redirect_to pois_url, notice: 'Poi was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def proximity
+    poi = Poi.new
+    @locales = poi.proximity([params[:x].to_i,params[:y].to_i,params[:distance].to_i])
+    respond_with @locales.to_json
   end
 
   private

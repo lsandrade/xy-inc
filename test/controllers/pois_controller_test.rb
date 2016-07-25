@@ -46,4 +46,5 @@ class PoisControllerTest < ActionController::TestCase
 
     assert_redirected_to pois_path
   end
+
 end
